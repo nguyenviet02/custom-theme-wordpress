@@ -115,6 +115,7 @@ if ( ! function_exists( 'website_menu' ) ) {
             'theme_location' => $slug,
             'container' => 'nav',
             'container_class' => $slug,
+            'items_wrap'      => '<ul id = "%1$s" class = "%2$s sf-menu">%3$s</ul>',
         );
         wp_nav_menu( $menu );
     }
@@ -306,5 +307,23 @@ function website_styles() {
     */
     wp_register_style( 'main-style', get_template_directory_uri() . '/style.css', 'all' );
     wp_enqueue_style( 'main-style' );
+
+    /*
+    * Chèn các file CSS của SuperFish Menu
+    */
+    wp_register_style( 'superfish-css', get_template_directory_uri() . '/css/superfish.css', 'all' );
+    wp_enqueue_style( 'superfish-css' );
+
+    /*
+    * Chèn file JS của SuperFish Menu
+    */
+    wp_register_script( 'superfish-js', get_template_directory_uri() . '/js/superfish.js', array( 'jquery' ) );
+    wp_enqueue_script( 'superfish-js' );
+
+    /*
+    * Chèn file JS custom.js
+    */
+    wp_register_script( 'custom-js', get_template_directory_uri() . '/js/custom.js', array( 'jquery' ) );
+    wp_enqueue_script( 'custom-js' );
 }
 add_action( 'wp_enqueue_scripts', 'website_styles' );
